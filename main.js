@@ -186,6 +186,8 @@ body > div > div > div,
 /* ─── TEXT INPUT & COMPOSER ────────────────────────────────────────────────── */
 
 textarea, input, select, option,
+input[type="text"], input[type="email"], input[type="password"],
+input[type="search"], input[type="tel"], input[type="url"], input[type="number"],
 [class*="input"], [class*="Input"],
 [class*="composer"], [class*="Composer"],
 [class*="editor"], [class*="Editor"],
@@ -196,10 +198,23 @@ textarea, input, select, option,
 [contenteditable="true"] {
   background-color: var(--jane-bg-surface) !important;
   color: var(--jane-text-bright) !important;
+  -webkit-text-fill-color: var(--jane-text-bright) !important;
   border: 1px solid var(--jane-border-bright) !important;
   border-radius: 8px !important;
   caret-color: var(--jane-accent) !important;
   transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Autofill override - Chromium injects dark text via -webkit-text-fill-color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--jane-text-bright) !important;
+  -webkit-box-shadow: 0 0 0 30px var(--jane-bg-surface) inset !important;
+  background-color: var(--jane-bg-surface) !important;
+  color: var(--jane-text-bright) !important;
+  caret-color: var(--jane-accent) !important;
 }
 
 textarea::placeholder, input::placeholder,
@@ -742,7 +757,8 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      sandbox: true,
+      sandbox: false,
+      preload: path.join(__dirname, 'preload.js'),
     },
     icon: path.join(__dirname, 'icon.png'),
   });

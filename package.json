@@ -1,7 +1,7 @@
 {
   "name": "jane",
-  "version": "1.1.0",
-  "description": "Dark standalone desktop app for Agent S — cyberpunk dark theme, window state persistence, polished UI",
+  "version": "1.2.0",
+  "description": "Dark standalone desktop app for Agent S \u2014 cyberpunk dark theme, window state persistence, polished UI",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -20,18 +20,23 @@
     "files": [
       "main.js",
       "icon.png",
-      "package.json"
+      "package.json",
+      "preload.js"
     ],
     "mac": {
       "category": "public.app-category.productivity",
       "target": [
         {
           "target": "dmg",
-          "arch": ["arm64"]
+          "arch": [
+            "arm64"
+          ]
         },
         {
           "target": "zip",
-          "arch": ["arm64"]
+          "arch": [
+            "arm64"
+          ]
         }
       ],
       "icon": "icon.png",
@@ -44,12 +49,17 @@
       "title": "Jane ${version}"
     },
     "linux": {
-      "target": ["AppImage", "deb"],
+      "target": [
+        "AppImage",
+        "deb"
+      ],
       "icon": "icon.png",
       "category": "Network"
     },
     "win": {
-      "target": ["nsis"],
+      "target": [
+        "nsis"
+      ],
       "icon": "icon.png"
     },
     "nsis": {
